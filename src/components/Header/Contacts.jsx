@@ -68,7 +68,7 @@ export default (props) => {
 
   return (
     <div className={ classes.headerContacts }>
-      <Link variant="subtitle1" to={ contactsData.location1.href } className={ `${ classes.headerLink } ${ classes.contactItemLink } ${ classes.contactItemDisable }` }>
+      <Link variant="subtitle1" href={ contactsData.location1.href } className={ `${ classes.headerLink } ${ classes.contactItemLink } ${ classes.contactItemDisable }` }>
         <span className={ classes.headerIconOutLine }><LocationOn /></span>
         <Typography variant="subtitle1" component="p" className={ ` ${ classes.contactItemText }` }>
           { contactsData.location1.name }

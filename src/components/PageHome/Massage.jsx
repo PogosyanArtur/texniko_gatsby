@@ -1,11 +1,12 @@
 import React from 'react'
 import {Paper, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
-import Wrapper from 'components/Wrapper'
+import Wrapper from '../Wrapper'
+import homeBg_2 from '../../assets/images/main/homeBg_2.jpg'
 
 const useStyles = makeStyles(theme => ({
     Container: {
-        backgroundImage: `linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(${ require('static/images/roller_1920х1080.jpg') })`,
+        backgroundImage: `linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(${ homeBg_2})`,
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
         backgroundPosition: 'right top',

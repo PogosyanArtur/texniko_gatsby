@@ -30,6 +30,5 @@ export default [
     {
         id:'8',
         title:'Дорожные Фрезы',
-    },
-
+    }
   ]

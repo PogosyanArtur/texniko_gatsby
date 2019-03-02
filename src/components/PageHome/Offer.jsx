@@ -1,16 +1,17 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/styles'
 import { Grid, Paper, Typography, Hidden } from '@material-ui/core'
-import Wrapper from 'components/Wrapper'
-import IconBulldozer from 'components/Icons/IconBulldozer'
-import IconExcavator1 from 'components/Icons/IconExcavator_1'
+import Wrapper from '../Wrapper'
+import IconBulldozer from '../Icons/IconBulldozer'
+import IconExcavator1 from '../Icons/IconExcavator_1'
+import homeBg_1 from '../../assets/images/main/homeBg_1.jpg'
 
 
 const useStyles = makeStyles(theme => ({
     HomeOffer: {
         paddingTop: theme.spacing.unit * 3,
         paddingBottom: theme.spacing.unit * 3,
-        backgroundImage: `linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.9)),url(${ require('static/images/excavator-406812_1920.jpg') })`,
+        backgroundImage: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)),url(${ homeBg_1})`,
         [ theme.breakpoints.up('md') ]: {
             paddingTop: theme.spacing.unit * 8,
             paddingBottom: theme.spacing.unit * 8,

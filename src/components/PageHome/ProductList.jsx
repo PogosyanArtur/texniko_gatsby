@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import { useStaticQuery, graphql } from "gatsby"
 import { makeStyles } from '@material-ui/styles';
-import { Typography, Grid, Button,Collapse  } from '@material-ui/core';
-import Wrapper from 'components/Wrapper'
+import { Typography, Grid, Button, Collapse } from '@material-ui/core';
+import Wrapper from '../Wrapper'
 import ProductCard from './ProductCard'
-import {productListData} from 'data'
+import productListData from '../../data/productListData'
 
 const useStyles = makeStyles(theme => ({
     Header: {
@@ -37,38 +38,55 @@ const useStyles = makeStyles(theme => ({
     },
 }))
 
-const ProductList = () => {
+export default () => {
     const classes = useStyles()
     let [ showAllState, setShowAllState ] = useState(false)
     const showAllHandler = () => (
         setShowAllState(showAllState = true)
     )
+    const data = useStaticQuery(graphql`
+    query getHomeProductListImages {
+        allFile(filter: {extension: {eq: "jpg"}, sourceInstanceName: {eq: "mainImages"}, name:{regex:"/homeProductCard_*/"}}) {
+          edges {
+            node {
+              publicURL
+              name
+            }
+          }
+        }
+      }    
+    `)
     return (
+
         <section>
             <header className={ classes.Header }>
                 <Wrapper>
-                    <Typography variant="h2" className={ classes.Title }>добро пожаловать <span className={ classes.TitleAccent }>в мир спецтехники</span></Typography>
+                    <Typography variant="h2" className={ classes.Title }>
+                        добро пожаловать <span className={ classes.TitleAccent }>в мир спецтехники</span>
+                    </Typography>
                 </Wrapper>
             </header>
-            
+
             <Wrapper className={ classes.Wrap }>
-                <Collapse in={showAllState} timeout={1000} collapsedHeight="600px">
+                <Collapse in={ showAllState } timeout={ 1000 } collapsedHeight="600px">
                     <Grid container spacing={ 24 } justify="center" >
                         {
-                            productListData.map((item) => 
-                                <Grid item key={ item.id }>
-                                    <ProductCard id={item.id} title={item.title}/>
-                                </Grid>
-                        )
-                        }            
+                            productListData.map((cardData, id) =>
+                                <Grid item key={ id }>
+                                    <ProductCard
+                                        id={ cardData.id }
+                                        imageData={ data.allFile.edges[ id ].node.publicURL }
+                                        title={ cardData.title } />
+                                </Grid>)
+                        }
                     </Grid>
                 </Collapse>
-             </Wrapper>           
-                <Grid container justify="center" className={ classes.Wrap }>
-                    { !showAllState ? <Button onClick={ showAllHandler } variant="contained" color="primary">Показать Все</Button> : null }
-                </Grid>            
+            </Wrapper>
+            <Grid container justify="center" className={ classes.Wrap }>
+                { !showAllState ? <Button onClick={ showAllHandler } variant="contained" color="primary">Показать Все</Button> : null }
+            </Grid>
         </section>
+
 
     )
 }
-export default ProductList;
