@@ -1,11 +1,11 @@
 import React from 'react'
 import { Grid, Typography } from '@material-ui/core'
 import { makeStyles} from '@material-ui/styles'
-import Like from '../Icons/Like'
-import Excavator from '../Icons/Excavator'
-import MoneyBag from '../Icons/MoneyBag'
-import Machinery from '../Icons/Machinery'
-import Wrapper from '../Wrapper'
+import Like from 'components/Icons/Like'
+import Excavator from 'components/Icons/Excavator'
+import MoneyBag from 'components/Icons/MoneyBag'
+import Machinery from 'components/Icons/Machinery'
+import Wrapper from 'components/Wrapper'
 
 const useStyles = makeStyles(theme=>({
     Container:{

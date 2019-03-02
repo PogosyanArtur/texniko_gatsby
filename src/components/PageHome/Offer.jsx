@@ -1,10 +1,10 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/styles'
 import { Grid, Paper, Typography, Hidden } from '@material-ui/core'
-import Wrapper from '../Wrapper'
-import IconBulldozer from '../Icons/IconBulldozer'
-import IconExcavator1 from '../Icons/IconExcavator_1'
-import homeBg_1 from '../../assets/images/main/homeBg_1.jpg'
+import Wrapper from 'components/Wrapper'
+import IconBulldozer from 'components/Icons/IconBulldozer'
+import IconExcavator1 from 'components/Icons/IconExcavator_1'
+import homeBg_1 from 'assets/images/main/homeBg_1.jpg'
 
 
 const useStyles = makeStyles(theme => ({

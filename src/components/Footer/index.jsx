@@ -1,7 +1,7 @@
 import React from 'react'
 import { Grid, Typography,Divider } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
-import Wrapper from '../Wrapper'
+import Wrapper from 'components/Wrapper'
 
 const useStyles = makeStyles(theme => ({
     Logo:{

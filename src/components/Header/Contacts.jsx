@@ -2,7 +2,7 @@ import React from 'react'
 import { makeStyles } from '@material-ui/styles';
 import { Typography, Link } from '@material-ui/core'
 import { LocationOn, MailOutline, Phone } from '@material-ui/icons'
-import contactsData from '../../data/contactsData'
+import contactsData from 'data/contactsData'
 
 const useStyles = makeStyles(theme => ({
   Label:{

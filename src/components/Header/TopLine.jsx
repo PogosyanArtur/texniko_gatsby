@@ -2,8 +2,8 @@ import React from 'react'
 import { makeStyles } from '@material-ui/styles';
 import { Typography, Grid, Link, Divider, Hidden } from '@material-ui/core'
 import { AccessTime as AccessTimeIcon, LocationOn  as LocationOnIcon} from '@material-ui/icons'
-import contactsData from '../../data/contactsData'
-import Wrapper from '../Wrapper'
+import contactsData from 'data/contactsData'
+import Wrapper from 'components/Wrapper'
 
 const useStyles = makeStyles(theme=>({
 	Divider: {

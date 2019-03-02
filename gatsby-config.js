@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
+    description: ``,
     author: `@gatsbyjs`,
   },
   plugins: [
@@ -32,6 +32,17 @@ module.exports = {
         theme_color: `#663399`,
         display: `minimal-ui`,
       },
+    },
+    {
+      resolve: `gatsby-plugin-root-import`,
+      options: {
+        src: `${__dirname}/src`,
+        assets: `${__dirname}/src/assets`,
+        components: `${__dirname}/src/components`,
+        data: `${__dirname}/src/data`,
+        layout: `${__dirname}/src/layout`,
+        pages: `${__dirname}/src/pages`,
+      }
     }
   ],
 }

@@ -1,8 +1,8 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/styles';
 import { AppBar, Hidden,  Button, Toolbar } from '@material-ui/core'
-import navigation_Data from '../../data/navigationData'
-import Wrapper from '../Wrapper'
+import navigation_Data from 'data/navigationData'
+import Wrapper from 'components/Wrapper'
 import TopLine from "./TopLine"
 import Body from "./Body"
 

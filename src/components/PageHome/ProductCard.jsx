@@ -1,9 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/styles';
 import { Typography, Card, CardMedia, CardActionArea, CardContent } from '@material-ui/core';
-
-
-
 const useStyles = makeStyles(theme => ({
     Card: {
         maxWidth: '250px'

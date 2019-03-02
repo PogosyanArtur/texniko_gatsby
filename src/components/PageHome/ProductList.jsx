@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { useStaticQuery, graphql } from "gatsby"
 import { makeStyles } from '@material-ui/styles';
 import { Typography, Grid, Button, Collapse } from '@material-ui/core';
-import Wrapper from '../Wrapper'
+import Wrapper from 'components/Wrapper'
 import ProductCard from './ProductCard'
-import productListData from '../../data/productListData'
+import productListData from 'data/productListData'
 
 const useStyles = makeStyles(theme => ({
     Header: {

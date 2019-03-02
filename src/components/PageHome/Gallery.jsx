@@ -7,7 +7,7 @@ import { unstable_useMediaQuery as useMediaQuery } from '@material-ui/core/useMe
 import Carousel from 'nuka-carousel';
 import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
-import Wrapper from '../Wrapper'
+import Wrapper from 'components/Wrapper'
 
 const useStyles = makeStyles(theme => ({
     Title: {

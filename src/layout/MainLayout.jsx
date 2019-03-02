@@ -1,7 +1,7 @@
 import React, {Fragment} from 'react'
 import { makeStyles } from '@material-ui/styles';
-import Header from '../components/Header'
-import Footer from '../components/Footer'
+import Header from 'components/Header'
+import Footer from 'components/Footer'
 
 const useStyles = makeStyles(theme=>({
     spacingTop :{

@@ -1,8 +1,8 @@
 import React from 'react'
 import {Paper, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/styles'
-import Wrapper from '../Wrapper'
-import homeBg_2 from '../../assets/images/main/homeBg_2.jpg'
+import Wrapper from 'components/Wrapper'
+import homeBg_2 from 'assets/images/main/homeBg_2.jpg'
 
 const useStyles = makeStyles(theme => ({
     Container: {

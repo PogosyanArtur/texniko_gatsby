@@ -3,9 +3,9 @@ import { makeStyles, useTheme } from '@material-ui/styles';
 import { Grid, Link, IconButton, ListItemText, List, ListItem,Collapse } from '@material-ui/core'
 import { unstable_useMediaQuery as useMediaQuery } from '@material-ui/core/useMediaQuery';
 import { Menu as MenuIcon } from '@material-ui/icons'
-import navigationData from '../../data/navigationData'
+import navigationData from 'data/navigationData'
 import Contacts from './Contacts'
-import Wrapper from '../Wrapper'
+import Wrapper from 'components/Wrapper'
 
 
 const useStyles = makeStyles(theme => ({
