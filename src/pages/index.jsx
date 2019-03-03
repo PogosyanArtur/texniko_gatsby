@@ -1,23 +1,17 @@
 import React from 'react';
 import withRoot from '../withRoot';
 import MainLayout from 'layout/MainLayout'
-import Banner from 'components/PageHome/Banner'
-import ProductList from 'components/PageHome/ProductList'
-import Offer from 'components/PageHome/Offer'
-import Gallery from 'components/PageHome/Gallery'
-import WhyChooseUS from 'components/PageHome/WhyChooseUS'
-import Massage from 'components/PageHome/Massage'
-
+import PageHome from 'components/PageHome'
 
 const Home = () => {
   return (
     <MainLayout>
-      <Banner/>
-      <ProductList/>
-      <Offer/>
-      <Gallery/>
-      <WhyChooseUS/>
-      <Massage/> 
+      <PageHome.Banner/>
+      <PageHome.ProductList/>
+      <PageHome.Offer/>
+      <PageHome.Gallery/>
+      <PageHome.WhyChooseUs/>
+      <PageHome.Massage/> 
     </MainLayout>
   )
 }

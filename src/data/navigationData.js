@@ -13,7 +13,7 @@ export default [
     },
     {
         name:'о нас',
-        value:'aboutUs'
+        value:'about'
     },
     {
         name:'фотогалерея',

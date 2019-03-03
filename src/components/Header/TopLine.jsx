@@ -1,6 +1,7 @@
 import React from 'react'
+import {Link as GatsbyLink} from 'gatsby'
 import { makeStyles } from '@material-ui/styles';
-import { Typography, Grid, Link, Divider, Hidden } from '@material-ui/core'
+import { Typography, Grid, Link as A, Divider, Hidden } from '@material-ui/core'
 import { AccessTime as AccessTimeIcon, LocationOn  as LocationOnIcon} from '@material-ui/icons'
 import contactsData from 'data/contactsData'
 import Wrapper from 'components/Wrapper'
@@ -40,11 +41,13 @@ const useStyles = makeStyles(theme=>({
 			<Grid container justify='flex-end'>
 
 				<Hidden implementation="css" smDown>
-					<Link
+					<A	
+						component={GatsbyLink}
+						to="/contacts/"
 						variant="caption" 
 						className={ `${ classes.Text } ${ classes.Link }` }>
 						<LocationOnIcon className={ classes.icon } />{ contactsData.location1.name }
-					</Link>
+					</A>
 				</Hidden>
 
 				<Typography variant="caption" className={ classes.Text }>

@@ -1,20 +1,28 @@
-import React, { useState, Fragment } from 'react'
-import { makeStyles, useTheme } from '@material-ui/styles';
-import { Grid, Link, IconButton, ListItemText, List, ListItem,Collapse } from '@material-ui/core'
-import { unstable_useMediaQuery as useMediaQuery } from '@material-ui/core/useMediaQuery';
-import { Menu as MenuIcon } from '@material-ui/icons'
-import navigationData from 'data/navigationData'
-import Contacts from './Contacts'
-import Wrapper from 'components/Wrapper'
+import React, { useState, Fragment } from "react";
+import { Link as GatsbyLink } from "gatsby";
+import { makeStyles, useTheme } from "@material-ui/styles";
+import {
+	Grid,
+	Link as A,
+	IconButton,
+	ListItemText,
+	List,
+	ListItem,
+	Collapse,
+} from "@material-ui/core";
+import { unstable_useMediaQuery as useMediaQuery } from "@material-ui/core/useMediaQuery";
+import { Menu as MenuIcon } from "@material-ui/icons";
+import navigationData from "data/navigationData";
+import Contacts from "./Contacts";
+import Wrapper from "components/Wrapper";
 
-
-const useStyles = makeStyles(theme => ({
-	Wrapper:{
-		paddingTop:theme.spacing.unit,
-		paddingBottom:theme.spacing.unit,
+const useStyles = makeStyles((theme) => ({
+	Wrapper: {
+		paddingTop: theme.spacing.unit,
+		paddingBottom: theme.spacing.unit,
 	},
 	IconButton: {
-		cursor: 'pointer',
+		cursor: "pointer",
 		color: theme.palette.common.white,
 	},
 
@@ -24,10 +32,10 @@ const useStyles = makeStyles(theme => ({
 
 	LinkLogo: {
 		color: theme.palette.grey[ 50 ],
-		fontStyle: 'italic',
-		cursor: 'pointer',
-		'&:hover': {
-			textDecoration: 'none',
+		fontStyle: "italic",
+		cursor: "pointer",
+		"&:hover": {
+			textDecoration: "none",
 		},
 	},
 
@@ -38,66 +46,73 @@ const useStyles = makeStyles(theme => ({
 	},
 	ListItem: {
 		color: theme.palette.secondary.main,
-		textTransform: 'uppercase',
-		'&:hover, &:focus': {
+		textTransform: "uppercase",
+		"&:hover, &:focus": {
 			backgroundColor: theme.palette.secondary.main,
-		}
+		},
 	},
-
-}))
+}));
 
 export default () => {
 	const theme = useTheme();
 	const classes = useStyles();
-	const mdDown = useMediaQuery(theme.breakpoints.down('md'))
+	const mdDown = useMediaQuery(theme.breakpoints.down("md"));
 
-	let [ show, setShow] = useState(false)
+	let [ show, setShow ] = useState(false);
 
 	const menuListToggleHandler = () => {
-		setShow(show = !show)
-	}
+		setShow((show = !show));
+	};
 
 	const closeMenuListHandler = () => {
-		setShow(show = false)
-	}
+		setShow((show = false));
+	};
 
 	return (
 		<Fragment>
-			<Wrapper className ={ classes.Wrapper }>
+			<Wrapper className={ classes.Wrapper }>
 				<Grid container justify="space-between" alignItems="center">
-					<Link  variant="h1" className={ classes.LinkLogo }>
+					<A
+						variant="h1"
+						className={ classes.LinkLogo }
+						component={ GatsbyLink }
+						to="/">
 						<span className={ classes.logoFirstLetter }>T</span>exniko
-					</Link>
+					</A>
 					{ !mdDown && <Contacts /> }
-					{ mdDown
-						&& <IconButton className={ classes.IconButton } onClick={ menuListToggleHandler }>
+					{ mdDown && (
+						<IconButton
+							className={ classes.IconButton }
+							onClick={ menuListToggleHandler }>
 							<MenuIcon fontSize="large" />
-						</IconButton> }
-
+						</IconButton>
+					) }
 				</Grid>
 			</Wrapper>
-			{ mdDown
-				&& <Collapse in={show} timeout={500}>
+			{ mdDown && (
+				<Collapse in={ show } timeout={ 500 }>
 					<List component="nav" className={ classes.List }>
-						{
-							navigationData.map(item => (
-								<ListItem
-									divider
-									button
-									key={ item.value }
-									onClick={ closeMenuListHandler }
-									className={ classes.ListItem }
-								>
-									<ListItemText primary={ item.name } dense="true" />
-								</ListItem>
-							))
-						}
+						{ navigationData.map((item) => (
+							<ListItem
+								divider
+								button
+								key={ item.value }
+								onClick={ closeMenuListHandler }
+								className={ classes.ListItem }
+								component={ GatsbyLink }
+								to={ `/${ item.value }/` }>
+								<ListItemText
+									primary={ item.name }
+									dense="true"
+								/>
+							</ListItem>
+						)) }
 					</List>
 				</Collapse>
-			}
-			<Wrapper className ={ classes.Wrapper }>
-				{ mdDown && <Contacts/> }
+			) }
+			<Wrapper className={ classes.Wrapper }>
+				{ mdDown && <Contacts /> }
 			</Wrapper>
 		</Fragment>
-	)
-}
+	);
+};

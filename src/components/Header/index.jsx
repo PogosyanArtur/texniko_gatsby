@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link as GatsbyLink} from 'gatsby'
 import { makeStyles } from '@material-ui/styles';
 import { AppBar, Hidden,  Button, Toolbar } from '@material-ui/core'
 import navigation_Data from 'data/navigationData'
@@ -49,6 +50,8 @@ const Header = () => {
 								fullWidth
 								variant='text'
 								className={ classes.Button }
+								component={GatsbyLink}
+								to={`/${item.value}/`}
 							>
 								{ item.name }
 							</Button>
