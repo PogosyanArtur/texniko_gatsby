@@ -1,12 +1,12 @@
 import React from 'react'
 import withRoot from '../withRoot';
-import PageContacts from 'components/PageContacts'
+import PageEquipment from 'components/PageEquipment'
 import MainLayout from 'layout/MainLayout'
 
 export default withRoot(() => {
     return (
         <MainLayout>
-            <PageContacts/>
+            <PageEquipment/>
         </MainLayout>
     )
 })
