@@ -8,6 +8,7 @@ import Carousel from 'nuka-carousel';
 import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
 import Wrapper from 'components/Wrapper'
+import galleyData from 'data/galleryData'
 
 const useStyles = makeStyles(theme => ({
     Title: {
@@ -69,6 +70,7 @@ const useStyles = makeStyles(theme => ({
     }
 }))
 
+
 export default () => {
     const classes = useStyles()
     const theme = useTheme();
@@ -91,6 +93,21 @@ export default () => {
       }
     `)
 
+    const imageData = data.allFile.edges.reduce((acc, item) => {
+        let obj = {}
+        galleyData.forEach(galleryItem=>{
+            if(galleryItem.name === item.node.name){
+                obj.src = item.node.publicURL
+                obj.name = galleryItem.name
+                obj.title = galleryItem.title
+            }
+        })
+        acc.push(obj)
+        return acc
+    },[])
+
+    const imageDataLength = imageData.length
+
     const handleNext = () => {
         setCurrentIndex(currentIndex + 1)
     };
@@ -110,9 +127,7 @@ export default () => {
     {
         SlideToShowNumber = 3;
     }
-
-   const imagesDataLength = data.allFile.edges.length
-   const sideImagesDataLength = imagesDataLength - 1
+    console.log('imageData Index:', photoIndex)
     return (
         <section className={ classes.GalleryContainer }>
             <Wrapper>
@@ -126,16 +141,16 @@ export default () => {
                     cellAlign="left"
                     cellSpacing={ 20 }>
                     {
-                        data.allFile.edges.map((item, index) => (
+                        imageData.map((item, index) => (
                             <Card
-                                key={ item }
+                                key={ item.name }
                                 className={ classes.Card }
                                 elevation={ 0 }
                                 onClick={ () => LightboxOpenHandler(index) }>
                                 <div className={ classes.CardMediaContainer }>
                                     <CardMedia
                                         className={ classes.CardMedia }
-                                        image={ item.node.publicURL } />
+                                        image={ item.src } />
                                     <div className={ classes.CardMediaCover }></div>
                                 </div>
                                 <CardContent>
@@ -143,7 +158,7 @@ export default () => {
                                         variant="body1"
                                         component="h4"
                                         className={ classes.CardTitle }>
-                                        Трактор JSb 3 при  разработке грунта, объект Москва Сити
+                                        {item.title}
                                     </Typography>
                                 </CardContent>
                             </Card>
@@ -152,13 +167,13 @@ export default () => {
                 </Carousel>
                 <MobileStepper
                     variant="dots"
-                    steps={ sideImagesDataLength + 1 }
+                    steps={ imageDataLength - 1 }
                     activeStep={ currentIndex }
                     position="static"
                     className={ classes.MobileStepper }
                     classes={ { dotActive: classes.MobileStepperDotActive, dot: classes.MobileStepperDot } }
                     nextButton={
-                        <IconButton disableRipple className={ classes.IconButton } size="small" onClick={ handleNext } disabled={ currentIndex === sideImagesDataLength }>
+                        <IconButton disableRipple className={ classes.IconButton } size="small" onClick={ handleNext } disabled={ currentIndex === imageDataLength }>
                             <KeyboardArrowRight fontSize="small" />
                         </IconButton>
                     }
@@ -170,19 +185,19 @@ export default () => {
                 />
                 { lightboxIsOpen && (
                     <Lightbox
-                        mainSrc={ data.allFile.edges[photoIndex].node.publicURL }
-                        nextSrc={ data.allFile.edges[photoIndex + 1 % imagesDataLength].node.publicURL }
-                        prevSrc={ data.allFile.edges[photoIndex - 1 % imagesDataLength].node.publicURL }
+                        mainSrc={imageData[photoIndex].src}
+                        nextSrc={ imageData[(photoIndex + 1) % imageDataLength].src }
+                        prevSrc={ imageData[(photoIndex + imageDataLength - 1) % imageDataLength].src }
                         onCloseRequest={ () => setLightboxIsOpen(false) }
                         onMovePrevRequest={ () =>
-                            setPhotoIndex((photoIndex + imagesDataLength - 1) % imagesDataLength)
+                            setPhotoIndex((photoIndex + imageDataLength - 1) % imageDataLength)
                         }
                         onMoveNextRequest={ () =>
-                            setPhotoIndex((photoIndex + 1) % imagesDataLength)
+                            setPhotoIndex((photoIndex + 1) % imageDataLength)
                         }
                         reactModalStyle={ { overlay: { zIndex: theme.zIndex.lightBox } } }
                     />
-                ) }
+                )}
             </Wrapper>
         </section>
     )

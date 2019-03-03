@@ -45,7 +45,7 @@ export default () => {
           <div
             key={ src.node.name }
             className={ classes.Slide }
-            style={ { backgroundImage: `linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(${ src.node.publicURL })` } }>
+            style={ { backgroundImage: `linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url(${ src.node.publicURL })` } }>
           </div>
         ))
       }
