@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/styles'
 import {Typography,Divider, Grid, List, ListItem, ListItemIcon } from '@material-ui/core'
 import {LocationOn  as IconLocationOn, MailOutline as IconMailOutline, Phone as IconPhone } from '@material-ui/icons'
 import Wrapper from 'components/Wrapper'
-import contactBanner from 'assets/images/main/contactBanner.jpg'
+import contactBanner from 'assets/images/main/bg_3.jpg'
 import contactsData from 'data/contactsData'
 
 const useStyles = makeStyles(theme => ({

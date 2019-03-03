@@ -49,30 +49,6 @@ const ProductCard = ({ id, title, imageData }) => {
                                         <Typography className={ classes.CardLabel } variant="h6" wrap="noWrap">Двигатель</Typography>
                                         <Typography variant="h6" component="p" color="primary" wrap="noWrap">86 л.с.</Typography>
                                 </Grid>
-                                <Grid item  xs={12} sm  className={classes.DescriptionItem}>
-                                        <Typography className={ classes.CardLabel } variant="h6" wrap="noWrap">Двигатель</Typography>
-                                        <Typography variant="h6" component="p" color="primary" wrap="noWrap">86 л.с.</Typography>
-                                </Grid>
-                                <Grid item  xs={12} sm  className={classes.DescriptionItem}>
-                                        <Typography className={ classes.CardLabel } variant="h6" wrap="noWrap">Двигатель</Typography>
-                                        <Typography variant="h6" component="p" color="primary" wrap="noWrap">86 л.с.</Typography>
-                                </Grid>
-                                <Grid item  xs={12} sm  className={classes.DescriptionItem}>
-                                        <Typography className={ classes.CardLabel } variant="h6" wrap="noWrap">Двигатель</Typography>
-                                        <Typography variant="h6" component="p" color="primary" wrap="noWrap">86 л.с.</Typography>
-                                </Grid>
-                                <Grid item  xs={12} sm  className={classes.DescriptionItem}>
-                                        <Typography className={ classes.CardLabel } variant="h6" wrap="noWrap">Двигатель</Typography>
-                                        <Typography variant="h6" component="p" color="primary" wrap="noWrap">86 л.с.</Typography>
-                                </Grid>
-                                <Grid item   xs={12} sm className={classes.DescriptionItem}>
-                                        <Typography className={ classes.CardLabel } variant="h6" wrap="noWrap">Двигатель</Typography>
-                                        <Typography variant="h6" component="p" color="primary" wrap="noWrap">86 л.с.</Typography>
-                                </Grid>
-                                <Grid item  xs={12} sm  className={classes.DescriptionItem}>
-                                        <Typography className={ classes.CardLabel } variant="h6" wrap="noWrap">Двигатель</Typography>
-                                        <Typography variant="h6" component="p" color="primary" wrap="noWrap">86 л.с.</Typography>
-                                </Grid>
                             </Grid>
                         <Grid container direction="column" alignItems="flex-end">                  
                             <Typography className={ classes.CardPrice } variant="h5" component="p" color="secondary" wrap="noWrap">10 600 руб/смена</Typography>

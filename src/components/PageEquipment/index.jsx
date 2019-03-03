@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/styles'
 import { Typography, Divider, Grid, List, ListItem,ListItemText } from '@material-ui/core'
 import Wrapper from 'components/Wrapper'
 import ProductCard from './ProductCard'
-import equipmentBanner from 'assets/images/main/equipmentBanner.jpg'
+import equipmentBanner from 'assets/images/main/bg_4.jpg'
 
 import productListData from 'data/productListData'
 
