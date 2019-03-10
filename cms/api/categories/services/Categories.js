@@ -1,8 +1,8 @@
-/* global Gallary */
+/* global Categories */
 'use strict';
 
 /**
- * Gallary.js service
+ * Categories.js service
  *
  * @description: A set of functions similar to controller's actions to avoid code duplication.
  */
@@ -16,20 +16,20 @@ const utils = require('strapi-hook-bookshelf/lib/utils/');
 module.exports = {
 
   /**
-   * Promise to fetch all gallaries.
+   * Promise to fetch all categories.
    *
    * @return {Promise}
    */
 
   fetchAll: (params) => {
     // Convert `params` object to filters compatible with Bookshelf.
-    const filters = strapi.utils.models.convertParams('gallary', params);
+    const filters = strapi.utils.models.convertParams('categories', params);
     // Select field to populate.
-    const populate = Gallary.associations
+    const populate = Categories.associations
       .filter(ast => ast.autoPopulate !== false)
       .map(ast => ast.alias);
 
-    return Gallary.query(function(qb) {
+    return Categories.query(function(qb) {
       _.forEach(filters.where, (where, key) => {
         if (_.isArray(where.value) && where.symbol !== 'IN' && where.symbol !== 'NOT IN') {
           for (const value in where.value) {
@@ -52,33 +52,33 @@ module.exports = {
   },
 
   /**
-   * Promise to fetch a/an gallary.
+   * Promise to fetch a/an categories.
    *
    * @return {Promise}
    */
 
   fetch: (params) => {
     // Select field to populate.
-    const populate = Gallary.associations
+    const populate = Categories.associations
       .filter(ast => ast.autoPopulate !== false)
       .map(ast => ast.alias);
 
-    return Gallary.forge(_.pick(params, 'id')).fetch({
+    return Categories.forge(_.pick(params, 'id')).fetch({
       withRelated: populate
     });
   },
 
   /**
-   * Promise to count a/an gallary.
+   * Promise to count a/an categories.
    *
    * @return {Promise}
    */
 
   count: (params) => {
     // Convert `params` object to filters compatible with Bookshelf.
-    const filters = strapi.utils.models.convertParams('gallary', params);
+    const filters = strapi.utils.models.convertParams('categories', params);
 
-    return Gallary.query(function(qb) {
+    return Categories.query(function(qb) {
       _.forEach(filters.where, (where, key) => {
         if (_.isArray(where.value)) {
           for (const value in where.value) {
@@ -92,50 +92,50 @@ module.exports = {
   },
 
   /**
-   * Promise to add a/an gallary.
+   * Promise to add a/an categories.
    *
    * @return {Promise}
    */
 
   add: async (values) => {
     // Extract values related to relational data.
-    const relations = _.pick(values, Gallary.associations.map(ast => ast.alias));
-    const data = _.omit(values, Gallary.associations.map(ast => ast.alias));
+    const relations = _.pick(values, Categories.associations.map(ast => ast.alias));
+    const data = _.omit(values, Categories.associations.map(ast => ast.alias));
 
     // Create entry with no-relational data.
-    const entry = await Gallary.forge(data).save();
+    const entry = await Categories.forge(data).save();
 
     // Create relational data and return the entry.
-    return Gallary.updateRelations({ id: entry.id , values: relations });
+    return Categories.updateRelations({ id: entry.id , values: relations });
   },
 
   /**
-   * Promise to edit a/an gallary.
+   * Promise to edit a/an categories.
    *
    * @return {Promise}
    */
 
   edit: async (params, values) => {
     // Extract values related to relational data.
-    const relations = _.pick(values, Gallary.associations.map(ast => ast.alias));
-    const data = _.omit(values, Gallary.associations.map(ast => ast.alias));
+    const relations = _.pick(values, Categories.associations.map(ast => ast.alias));
+    const data = _.omit(values, Categories.associations.map(ast => ast.alias));
 
     // Create entry with no-relational data.
-    const entry = Gallary.forge(params).save(data);
+    const entry = Categories.forge(params).save(data);
 
     // Create relational data and return the entry.
-    return Gallary.updateRelations(Object.assign(params, { values: relations }));
+    return Categories.updateRelations(Object.assign(params, { values: relations }));
   },
 
   /**
-   * Promise to remove a/an gallary.
+   * Promise to remove a/an categories.
    *
    * @return {Promise}
    */
 
   remove: async (params) => {
     params.values = {};
-    Gallary.associations.map(association => {
+    Categories.associations.map(association => {
       switch (association.nature) {
         case 'oneWay':
         case 'oneToOne':
@@ -152,45 +152,45 @@ module.exports = {
       }
     });
 
-    await Gallary.updateRelations(params);
+    await Categories.updateRelations(params);
 
-    return Gallary.forge(params).destroy();
+    return Categories.forge(params).destroy();
   },
 
   /**
-   * Promise to search a/an gallary.
+   * Promise to search a/an categories.
    *
    * @return {Promise}
    */
 
   search: async (params) => {
     // Convert `params` object to filters compatible with Bookshelf.
-    const filters = strapi.utils.models.convertParams('gallary', params);
+    const filters = strapi.utils.models.convertParams('categories', params);
     // Select field to populate.
-    const populate = Gallary.associations
+    const populate = Categories.associations
       .filter(ast => ast.autoPopulate !== false)
       .map(ast => ast.alias);
 
-    const associations = Gallary.associations.map(x => x.alias);
-    const searchText = Object.keys(Gallary._attributes)
-      .filter(attribute => attribute !== Gallary.primaryKey && !associations.includes(attribute))
-      .filter(attribute => ['string', 'text'].includes(Gallary._attributes[attribute].type));
+    const associations = Categories.associations.map(x => x.alias);
+    const searchText = Object.keys(Categories._attributes)
+      .filter(attribute => attribute !== Categories.primaryKey && !associations.includes(attribute))
+      .filter(attribute => ['string', 'text'].includes(Categories._attributes[attribute].type));
 
-    const searchNoText = Object.keys(Gallary._attributes)
-      .filter(attribute => attribute !== Gallary.primaryKey && !associations.includes(attribute))
-      .filter(attribute => !['string', 'text', 'boolean', 'integer', 'decimal', 'float'].includes(Gallary._attributes[attribute].type));
+    const searchNoText = Object.keys(Categories._attributes)
+      .filter(attribute => attribute !== Categories.primaryKey && !associations.includes(attribute))
+      .filter(attribute => !['string', 'text', 'boolean', 'integer', 'decimal', 'float'].includes(Categories._attributes[attribute].type));
 
-    const searchInt = Object.keys(Gallary._attributes)
-      .filter(attribute => attribute !== Gallary.primaryKey && !associations.includes(attribute))
-      .filter(attribute => ['integer', 'decimal', 'float'].includes(Gallary._attributes[attribute].type));
+    const searchInt = Object.keys(Categories._attributes)
+      .filter(attribute => attribute !== Categories.primaryKey && !associations.includes(attribute))
+      .filter(attribute => ['integer', 'decimal', 'float'].includes(Categories._attributes[attribute].type));
 
-    const searchBool = Object.keys(Gallary._attributes)
-      .filter(attribute => attribute !== Gallary.primaryKey && !associations.includes(attribute))
-      .filter(attribute => ['boolean'].includes(Gallary._attributes[attribute].type));
+    const searchBool = Object.keys(Categories._attributes)
+      .filter(attribute => attribute !== Categories.primaryKey && !associations.includes(attribute))
+      .filter(attribute => ['boolean'].includes(Categories._attributes[attribute].type));
 
     const query = (params._q || '').replace(/[^a-zA-Z0-9.-\s]+/g, '');
 
-    return Gallary.query(qb => {
+    return Categories.query(qb => {
       // Search in columns which are not text value.
       searchNoText.forEach(attribute => {
         qb.orWhereRaw(`LOWER(${attribute}) LIKE '%${_.toLower(query)}%'`);
@@ -209,7 +209,7 @@ module.exports = {
       }
 
       // Search in columns with text using index.
-      switch (Gallary.client) {
+      switch (Categories.client) {
         case 'mysql':
           qb.orWhereRaw(`MATCH(${searchText.join(',')}) AGAINST(? IN BOOLEAN MODE)`, `*${query}*`);
           break;

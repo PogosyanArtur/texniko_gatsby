@@ -1,9 +1,9 @@
 {
   "connection": "default",
-  "collectionName": "gallaries",
+  "collectionName": "galleries",
   "info": {
-    "name": "gallary",
-    "description": "Gallaty images and desctiptions"
+    "name": "gallery",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -16,15 +16,19 @@
       "type": "string",
       "required": true
     },
-    "shotDescription": {
-      "default": "",
-      "type": "string"
+    "categories": {
+      "model": "categories",
+      "via": "galleries"
     },
     "image": {
       "model": "file",
       "via": "related",
       "plugin": "upload",
       "required": true
+    },
+    "desctiption": {
+      "default": "",
+      "type": "string"
     }
   }
 }

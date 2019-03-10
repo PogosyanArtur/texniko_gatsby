@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Lifecycle callbacks for the `Gallary` model.
+ * Lifecycle callbacks for the `Categories` model.
  */
 
 module.exports = {

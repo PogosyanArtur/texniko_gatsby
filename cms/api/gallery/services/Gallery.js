@@ -1,8 +1,8 @@
-/* global Products */
+/* global Gallery */
 'use strict';
 
 /**
- * Products.js service
+ * Gallery.js service
  *
  * @description: A set of functions similar to controller's actions to avoid code duplication.
  */
@@ -16,20 +16,20 @@ const utils = require('strapi-hook-bookshelf/lib/utils/');
 module.exports = {
 
   /**
-   * Promise to fetch all products.
+   * Promise to fetch all galleries.
    *
    * @return {Promise}
    */
 
   fetchAll: (params) => {
     // Convert `params` object to filters compatible with Bookshelf.
-    const filters = strapi.utils.models.convertParams('products', params);
+    const filters = strapi.utils.models.convertParams('gallery', params);
     // Select field to populate.
-    const populate = Products.associations
+    const populate = Gallery.associations
       .filter(ast => ast.autoPopulate !== false)
       .map(ast => ast.alias);
 
-    return Products.query(function(qb) {
+    return Gallery.query(function(qb) {
       _.forEach(filters.where, (where, key) => {
         if (_.isArray(where.value) && where.symbol !== 'IN' && where.symbol !== 'NOT IN') {
           for (const value in where.value) {
@@ -52,33 +52,33 @@ module.exports = {
   },
 
   /**
-   * Promise to fetch a/an products.
+   * Promise to fetch a/an gallery.
    *
    * @return {Promise}
    */
 
   fetch: (params) => {
     // Select field to populate.
-    const populate = Products.associations
+    const populate = Gallery.associations
       .filter(ast => ast.autoPopulate !== false)
       .map(ast => ast.alias);
 
-    return Products.forge(_.pick(params, 'id')).fetch({
+    return Gallery.forge(_.pick(params, 'id')).fetch({
       withRelated: populate
     });
   },
 
   /**
-   * Promise to count a/an products.
+   * Promise to count a/an gallery.
    *
    * @return {Promise}
    */
 
   count: (params) => {
     // Convert `params` object to filters compatible with Bookshelf.
-    const filters = strapi.utils.models.convertParams('products', params);
+    const filters = strapi.utils.models.convertParams('gallery', params);
 
-    return Products.query(function(qb) {
+    return Gallery.query(function(qb) {
       _.forEach(filters.where, (where, key) => {
         if (_.isArray(where.value)) {
           for (const value in where.value) {
@@ -92,50 +92,50 @@ module.exports = {
   },
 
   /**
-   * Promise to add a/an products.
+   * Promise to add a/an gallery.
    *
    * @return {Promise}
    */
 
   add: async (values) => {
     // Extract values related to relational data.
-    const relations = _.pick(values, Products.associations.map(ast => ast.alias));
-    const data = _.omit(values, Products.associations.map(ast => ast.alias));
+    const relations = _.pick(values, Gallery.associations.map(ast => ast.alias));
+    const data = _.omit(values, Gallery.associations.map(ast => ast.alias));
 
     // Create entry with no-relational data.
-    const entry = await Products.forge(data).save();
+    const entry = await Gallery.forge(data).save();
 
     // Create relational data and return the entry.
-    return Products.updateRelations({ id: entry.id , values: relations });
+    return Gallery.updateRelations({ id: entry.id , values: relations });
   },
 
   /**
-   * Promise to edit a/an products.
+   * Promise to edit a/an gallery.
    *
    * @return {Promise}
    */
 
   edit: async (params, values) => {
     // Extract values related to relational data.
-    const relations = _.pick(values, Products.associations.map(ast => ast.alias));
-    const data = _.omit(values, Products.associations.map(ast => ast.alias));
+    const relations = _.pick(values, Gallery.associations.map(ast => ast.alias));
+    const data = _.omit(values, Gallery.associations.map(ast => ast.alias));
 
     // Create entry with no-relational data.
-    const entry = Products.forge(params).save(data);
+    const entry = Gallery.forge(params).save(data);
 
     // Create relational data and return the entry.
-    return Products.updateRelations(Object.assign(params, { values: relations }));
+    return Gallery.updateRelations(Object.assign(params, { values: relations }));
   },
 
   /**
-   * Promise to remove a/an products.
+   * Promise to remove a/an gallery.
    *
    * @return {Promise}
    */
 
   remove: async (params) => {
     params.values = {};
-    Products.associations.map(association => {
+    Gallery.associations.map(association => {
       switch (association.nature) {
         case 'oneWay':
         case 'oneToOne':
@@ -152,45 +152,45 @@ module.exports = {
       }
     });
 
-    await Products.updateRelations(params);
+    await Gallery.updateRelations(params);
 
-    return Products.forge(params).destroy();
+    return Gallery.forge(params).destroy();
   },
 
   /**
-   * Promise to search a/an products.
+   * Promise to search a/an gallery.
    *
    * @return {Promise}
    */
 
   search: async (params) => {
     // Convert `params` object to filters compatible with Bookshelf.
-    const filters = strapi.utils.models.convertParams('products', params);
+    const filters = strapi.utils.models.convertParams('gallery', params);
     // Select field to populate.
-    const populate = Products.associations
+    const populate = Gallery.associations
       .filter(ast => ast.autoPopulate !== false)
       .map(ast => ast.alias);
 
-    const associations = Products.associations.map(x => x.alias);
-    const searchText = Object.keys(Products._attributes)
-      .filter(attribute => attribute !== Products.primaryKey && !associations.includes(attribute))
-      .filter(attribute => ['string', 'text'].includes(Products._attributes[attribute].type));
+    const associations = Gallery.associations.map(x => x.alias);
+    const searchText = Object.keys(Gallery._attributes)
+      .filter(attribute => attribute !== Gallery.primaryKey && !associations.includes(attribute))
+      .filter(attribute => ['string', 'text'].includes(Gallery._attributes[attribute].type));
 
-    const searchNoText = Object.keys(Products._attributes)
-      .filter(attribute => attribute !== Products.primaryKey && !associations.includes(attribute))
-      .filter(attribute => !['string', 'text', 'boolean', 'integer', 'decimal', 'float'].includes(Products._attributes[attribute].type));
+    const searchNoText = Object.keys(Gallery._attributes)
+      .filter(attribute => attribute !== Gallery.primaryKey && !associations.includes(attribute))
+      .filter(attribute => !['string', 'text', 'boolean', 'integer', 'decimal', 'float'].includes(Gallery._attributes[attribute].type));
 
-    const searchInt = Object.keys(Products._attributes)
-      .filter(attribute => attribute !== Products.primaryKey && !associations.includes(attribute))
-      .filter(attribute => ['integer', 'decimal', 'float'].includes(Products._attributes[attribute].type));
+    const searchInt = Object.keys(Gallery._attributes)
+      .filter(attribute => attribute !== Gallery.primaryKey && !associations.includes(attribute))
+      .filter(attribute => ['integer', 'decimal', 'float'].includes(Gallery._attributes[attribute].type));
 
-    const searchBool = Object.keys(Products._attributes)
-      .filter(attribute => attribute !== Products.primaryKey && !associations.includes(attribute))
-      .filter(attribute => ['boolean'].includes(Products._attributes[attribute].type));
+    const searchBool = Object.keys(Gallery._attributes)
+      .filter(attribute => attribute !== Gallery.primaryKey && !associations.includes(attribute))
+      .filter(attribute => ['boolean'].includes(Gallery._attributes[attribute].type));
 
     const query = (params._q || '').replace(/[^a-zA-Z0-9.-\s]+/g, '');
 
-    return Products.query(qb => {
+    return Gallery.query(qb => {
       // Search in columns which are not text value.
       searchNoText.forEach(attribute => {
         qb.orWhereRaw(`LOWER(${attribute}) LIKE '%${_.toLower(query)}%'`);
@@ -209,7 +209,7 @@ module.exports = {
       }
 
       // Search in columns with text using index.
-      switch (Products.client) {
+      switch (Gallery.client) {
         case 'mysql':
           qb.orWhereRaw(`MATCH(${searchText.join(',')}) AGAINST(? IN BOOLEAN MODE)`, `*${query}*`);
           break;

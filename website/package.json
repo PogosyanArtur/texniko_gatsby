@@ -16,6 +16,7 @@
     "gatsby-plugin-react-helmet": "^3.0.6",
     "gatsby-plugin-sharp": "^2.0.22",
     "gatsby-source-filesystem": "^2.0.22",
+    "gatsby-source-strapi": "^0.0.7",
     "gatsby-transformer-sharp": "^2.1.14",
     "jss": "^9.8.7",
     "nuka-carousel": "^4.4.8",
@@ -47,10 +48,10 @@
     "start": "npm run develop",
     "serve": "gatsby serve",
     "test": "echo \"Write tests! -> https://gatsby.app/unit-testing\"",
-    "precommit":"lint-staged"
+    "precommit": "lint-staged"
   },
-  "lint-staged":{
-    "src/**/*.{js,jsx, json,css}":[
+  "lint-staged": {
+    "src/**/*.{js,jsx, json,css}": [
       "prettier --write",
       "git add"
     ]
