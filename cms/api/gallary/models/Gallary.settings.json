@@ -1,0 +1,30 @@
+{
+  "connection": "default",
+  "collectionName": "gallaries",
+  "info": {
+    "name": "gallary",
+    "description": "Gallaty images and desctiptions"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "comment": ""
+  },
+  "attributes": {
+    "title": {
+      "default": "",
+      "type": "string",
+      "required": true
+    },
+    "shotDescription": {
+      "default": "",
+      "type": "string"
+    },
+    "image": {
+      "model": "file",
+      "via": "related",
+      "plugin": "upload",
+      "required": true
+    }
+  }
+}

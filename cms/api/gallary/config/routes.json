@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/gallaries",
+      "handler": "Gallary.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/gallaries/count",
+      "handler": "Gallary.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/gallaries/:id",
+      "handler": "Gallary.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/gallaries",
+      "handler": "Gallary.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/gallaries/:id",
+      "handler": "Gallary.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/gallaries/:id",
+      "handler": "Gallary.destroy",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

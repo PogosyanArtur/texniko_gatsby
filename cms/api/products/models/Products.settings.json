@@ -1,0 +1,31 @@
+{
+  "connection": "default",
+  "collectionName": "products",
+  "info": {
+    "name": "products",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "comment": ""
+  },
+  "attributes": {
+    "bul": {
+      "default": false,
+      "type": "boolean"
+    },
+    "Json": {
+      "default": "",
+      "type": "json"
+    },
+    "text": {
+      "default": "",
+      "type": "text"
+    },
+    "wtuys": {
+      "default": "",
+      "type": "text"
+    }
+  }
+}
